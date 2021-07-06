@@ -171,7 +171,7 @@ hash4(keyarg, len)
 	const void *keyarg;
 	size_t len;
 {
-	const u_char *key;
+	const unsigned char *key;
 	__uint32_t h;
 
 #define HASH4a   h = (h << 5) - h + *key++;

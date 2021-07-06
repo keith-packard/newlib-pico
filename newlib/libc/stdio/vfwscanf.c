@@ -85,6 +85,7 @@ C99, POSIX-1.2008
 #include <wchar.h>
 #include <string.h>
 #include <stdarg.h>
+#include <alloca.h>
 #include <errno.h>
 #include "local.h"
 

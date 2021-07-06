@@ -30,6 +30,7 @@ PORTABILITY
 
 */
 
+#define _GNU_SOURCE
 #include <complex.h>
 #include <math.h>
 

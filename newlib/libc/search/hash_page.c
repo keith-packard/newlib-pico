@@ -30,6 +30,7 @@
  * SUCH DAMAGE.
  */
 
+#define _GNU_SOURCE
 #include <sys/param.h>
 #if defined(LIBC_SCCS) && !defined(lint)
 static char sccsid[] = "@(#)hash_page.c	8.7 (Berkeley) 8/16/94";
@@ -214,7 +215,7 @@ __split_page(hashp, obucket, nbucket)
 			return (retval);
 
 		}
-		key.data = (u_char *)op + ino[n];
+		key.data = (unsigned char *)op + ino[n];
 		key.size = off - ino[n];
 
 		if (__call_hash(hashp, key.data, key.size) == obucket) {
@@ -231,7 +232,7 @@ __split_page(hashp, obucket, nbucket)
 			ndx += 2;
 		} else {
 			/* Switch page */
-			val.data = (u_char *)op + ino[n + 1];
+			val.data = (unsigned char *)op + ino[n + 1];
 			val.size = ino[n] - ino[n + 1];
 			putpair(np, &key, &val);
 			moved += 2;
@@ -345,9 +346,9 @@ ugly_split(hashp, obucket, old_bufp, new_bufp, copyto, moved)
 		off = hashp->BSIZE;
 		for (n = 1; (n < ino[0]) && (ino[n + 1] >= REAL_KEY); n += 2) {
 			cino = (char *)ino;
-			key.data = (u_char *)cino + ino[n];
+			key.data = (unsigned char *)cino + ino[n];
 			key.size = off - ino[n];
-			val.data = (u_char *)cino + ino[n + 1];
+			val.data = (unsigned char *)cino + ino[n + 1];
 			val.size = ino[n] - ino[n + 1];
 			off = ino[n + 1];
 

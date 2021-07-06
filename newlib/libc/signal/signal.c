@@ -87,6 +87,7 @@ int _dummy_simulated_signal;
 
 #else
 
+#define _GNU_SOURCE
 #include <errno.h>
 #include <signal.h>
 #include <stddef.h>

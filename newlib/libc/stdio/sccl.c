@@ -29,9 +29,9 @@
  * considered part of the scanset.
  */
 
-u_char *
+unsigned char *
 __sccl (register char *tab,
-       register u_char *fmt)
+       register unsigned char *fmt)
 {
   register int c, n, v;
 

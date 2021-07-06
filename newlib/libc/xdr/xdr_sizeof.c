@@ -54,13 +54,13 @@ x_putlong (XDR * xdrs,
 static bool_t
 x_putbytes (XDR * xdrs,
 	const char *bp,
-	u_int len)
+	unsigned int len)
 {
   xdrs->x_handy += len;
   return TRUE;
 }
 
-static u_int
+static unsigned int
 x_getpostn (XDR * xdrs)
 {
   return xdrs->x_handy;
@@ -69,7 +69,7 @@ x_getpostn (XDR * xdrs)
 /* ARGSUSED */
 static bool_t
 x_setpostn (XDR * xdrs,
-	u_int pos)
+	unsigned int pos)
 {
   /* This is not allowed */
   return FALSE;
@@ -77,13 +77,13 @@ x_setpostn (XDR * xdrs,
 
 static int32_t *
 x_inline (XDR * xdrs,
-	u_int len)
+	unsigned int len)
 {
   if (len == 0)
     return NULL;
   if (xdrs->x_op != XDR_ENCODE)
     return NULL;
-  if (len < (u_int) (long int) xdrs->x_base)
+  if (len < (unsigned int) (long int) xdrs->x_base)
     {
       /* x_private was already allocated */
       xdrs->x_handy += len;
@@ -143,7 +143,7 @@ xdr_sizeof (xdrproc_t func,
   bool_t stat;
   /* to stop ANSI-C compiler from complaining */
   typedef bool_t (*dummyfunc1) (XDR *, long *);
-  typedef bool_t (*dummyfunc2) (XDR *, caddr_t, u_int);
+  typedef bool_t (*dummyfunc2) (XDR *, caddr_t, unsigned int);
   typedef bool_t (*dummyfunc3) (XDR *, int32_t *);
 
   ops.x_putlong = x_putlong;

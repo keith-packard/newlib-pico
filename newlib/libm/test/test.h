@@ -17,6 +17,7 @@
 #define HAVE_FLOAT 1
 #define X(x) (char *)x
 
+#define _GNU_SOURCE
 #include <math.h>
 #include <float.h>
 //#include <ieeefp.h>
@@ -31,10 +32,10 @@
 
 #ifdef __IEEE_BIG_ENDIAN
 
-typedef union 
+typedef union
 {
   double value;
-  struct 
+  struct
   {
     unsigned int sign : 1;
     unsigned int exponent: 11;
@@ -42,9 +43,9 @@ typedef union
     unsigned int fraction1:16;
     unsigned int fraction2:16;
     unsigned int fraction3:16;
-    
+
   } number;
-  struct 
+  struct
   {
     unsigned int sign : 1;
     unsigned int exponent: 11;
@@ -54,7 +55,7 @@ typedef union
     unsigned int function2:16;
     unsigned int function3:16;
   } nan;
-  struct 
+  struct
   {
     uint32_t msw;
     uint32_t lsw;
@@ -64,10 +65,10 @@ typedef union
 
 #else
 
-typedef union 
+typedef union
 {
   double value;
-  struct 
+  struct
   {
 #ifdef __SMALL_BITFIELDS
     unsigned int fraction3:16;
@@ -81,7 +82,7 @@ typedef union
     unsigned int exponent :11;
     unsigned int sign     : 1;
   } number;
-  struct 
+  struct
   {
 #ifdef __SMALL_BITFIELDS
     unsigned int function3:16;
@@ -96,7 +97,7 @@ typedef union
     unsigned int exponent: 11;
     unsigned int sign : 1;
   } nan;
-  struct 
+  struct
   {
     uint32_t lsw;
     uint32_t msw;
@@ -113,14 +114,14 @@ typedef union
 typedef union
 {
   float value;
-  struct 
+  struct
   {
     unsigned int sign : 1;
     unsigned int exponent: 8;
     unsigned int fraction0: 7;
     unsigned int fraction1: 16;
   } number;
-  struct 
+  struct
   {
     unsigned int sign:1;
     unsigned int exponent:8;
@@ -129,7 +130,7 @@ typedef union
     unsigned int function1:16;
   } nan;
   uint32_t p1;
-  
+
 } __ieee_float_shape_type;
 
 #else
@@ -137,14 +138,14 @@ typedef union
 typedef union
 {
   float value;
-  struct 
+  struct
   {
     unsigned int fraction0: 7;
     unsigned int fraction1: 16;
     unsigned int exponent: 8;
     unsigned int sign : 1;
   } number;
-  struct 
+  struct
   {
     unsigned int function1:16;
     unsigned int function0:6;
@@ -153,7 +154,7 @@ typedef union
     unsigned int sign:1;
   } nan;
   int32_t p1;
-  
+
 } __ieee_float_shape_type;
 
 #endif /* __IEEE_LITTLE_ENDIAN */
@@ -164,19 +165,19 @@ void enter();
 
 double translate_from();
 
-typedef struct 
+typedef struct
 {
   uint32_t msw, lsw;
 } question_struct_type;
 
 
-typedef struct 
+typedef struct
 {
   char error_bit;
   char errno_val;
   char merror;
   int line;
-  
+
   question_struct_type qs[3];
 } one_line_type;
 
@@ -197,7 +198,7 @@ int fmag_of_error (float, float);
 #define AA  6
 #define A   5
 #define B   3
-#define C   1 
+#define C   1
 #define VECOPEN(x,f) \
 {\
   char buffer[100];\
@@ -218,10 +219,10 @@ int fmag_of_error (float, float);
 
 
 
-typedef struct 
+typedef struct
 {
   int line;
-  
+
   char *string;
   double value;
   int endscan;
@@ -237,7 +238,7 @@ typedef struct {
   char errno_val;
 } int_scan_type;
 
-typedef struct 
+typedef struct
 {
   int line;
   int_scan_type octal;
@@ -249,7 +250,7 @@ typedef struct
 } int_type;
 
 
-typedef struct 
+typedef struct
 {
   int line;
   double value;
@@ -533,4 +534,3 @@ test_y1f(int vector);
 
 void
 test_ynf(int vector);
-

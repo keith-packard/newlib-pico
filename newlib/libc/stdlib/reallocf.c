@@ -28,6 +28,7 @@
 
 #include <sys/cdefs.h>
 
+#define _GNU_SOURCE
 #include <stdlib.h>
 
 #ifndef _REENT_ONLY

@@ -40,6 +40,7 @@ QUICKREF
 	strncasecmp_l
 */
 
+#define _GNU_SOURCE
 #include <strings.h>
 #include <ctype.h>
 

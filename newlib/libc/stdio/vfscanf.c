@@ -86,6 +86,7 @@ Supporting OS subroutines required:
 #include <string.h>
 #include <stdarg.h>
 #include <errno.h>
+#include <alloca.h>
 #include "local.h"
 #include "../stdlib/local.h"
 

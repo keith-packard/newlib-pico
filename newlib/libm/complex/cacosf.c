@@ -32,6 +32,7 @@
  * Marco Atzeri <marco_atzeri@yahoo.it>
  */
 
+#define _GNU_SOURCE
 #include <complex.h>
 #include <math.h>
 

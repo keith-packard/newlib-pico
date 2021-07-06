@@ -63,6 +63,7 @@ SEEALSO
 <<strftime>>
 */
 
+#define _GNU_SOURCE
 #include <time.h>
 #include <wchar.h>
 #define MAKE_WCSFTIME

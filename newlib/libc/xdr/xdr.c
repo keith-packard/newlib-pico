@@ -50,7 +50,7 @@
  */
 #define XDR_FALSE       ((long) 0)
 #define XDR_TRUE        ((long) 1)
-#define LASTUNSIGNED    ((u_int) 0-1)
+#define LASTUNSIGNED    ((unsigned int) 0-1)
 
 /*
  * for unit alignment
@@ -120,10 +120,10 @@ xdr_int (XDR * xdrs,
  */
 bool_t
 xdr_u_int (XDR * xdrs,
-	u_int * up)
+           unsigned int * up)
 {
 #if UINT_MAX < ULONG_MAX
-  u_long l;
+  unsigned long l;
   switch (xdrs->x_op)
     {
     case XDR_ENCODE:
@@ -143,7 +143,7 @@ xdr_u_int (XDR * xdrs,
     }
   return FALSE;
 #elif UINT_MAX == ULONG_MAX
-  return xdr_u_long (xdrs, (u_long *) up);
+  return xdr_u_long (xdrs, (unsigned long *) up);
 #else
 # error Unexpected integer sizes in xdr_int()
 #endif
@@ -174,12 +174,12 @@ xdr_long (XDR * xdrs,
  */
 bool_t
 xdr_u_long (XDR * xdrs,
-	u_long * ulp)
+	unsigned long * ulp)
 {
   switch (xdrs->x_op)
     {
     case XDR_ENCODE:
-      if ((sizeof (uint32_t) != sizeof (u_long)) && ((uint32_t) *ulp != *ulp))
+      if ((sizeof (uint32_t) != sizeof (unsigned long)) && ((uint32_t) *ulp != *ulp))
         return FALSE;
       return (XDR_PUTLONG (xdrs, (long *) ulp));
 
@@ -188,7 +188,7 @@ xdr_u_long (XDR * xdrs,
         long int tmp;
         if (XDR_GETLONG (xdrs, &tmp) == FALSE)
           return FALSE;
-        *ulp = (u_long) (uint32_t) tmp;
+        *ulp = (unsigned long) (uint32_t) tmp;
         return TRUE;
       }
 
@@ -294,20 +294,20 @@ xdr_short (XDR * xdrs,
  */
 bool_t
 xdr_u_short (XDR * xdrs,
-	u_short * usp)
+             unsigned short * usp)
 {
   long l;
 
   switch (xdrs->x_op)
     {
     case XDR_ENCODE:
-      l = (u_long) * usp;
+      l = (unsigned long) * usp;
       return XDR_PUTLONG (xdrs, &l);
 
     case XDR_DECODE:
       if (!XDR_GETLONG (xdrs, &l))
         return FALSE;
-      *usp = (u_short) (u_long) l;
+      *usp = (unsigned short) (unsigned long) l;
       return TRUE;
 
     case XDR_FREE:
@@ -502,14 +502,14 @@ xdr_char (XDR * xdrs,
  */
 bool_t
 xdr_u_char (XDR * xdrs,
-	u_char * ucp)
+            unsigned char * ucp)
 {
-  u_int u;
+  unsigned int u;
 
   u = (*ucp);
   if (!xdr_u_int (xdrs, &u))
     return FALSE;
-  *ucp = (u_char) u;
+  *ucp = (unsigned char) u;
   return TRUE;
 }
 
@@ -589,9 +589,9 @@ xdr_enum (XDR * xdrs,
 bool_t
 xdr_opaque (XDR * xdrs,
 	caddr_t cp,
-	u_int cnt)
+	unsigned int cnt)
 {
-  u_int rndup;
+  unsigned int rndup;
   static char crud[BYTES_PER_XDR_UNIT];
 
   /*
@@ -637,11 +637,11 @@ xdr_opaque (XDR * xdrs,
 bool_t
 xdr_bytes (XDR * xdrs,
 	char ** cpp,
-	u_int * sizep,
-	u_int maxsize)
+	unsigned int * sizep,
+	unsigned int maxsize)
 {
   char *sp = *cpp;              /* sp is the actual string pointer */
-  u_int nodesize;
+  unsigned int nodesize;
 
   /*
    * first deal with the length since xdr bytes are counted
@@ -761,11 +761,11 @@ xdr_union (XDR * xdrs,
 bool_t
 xdr_string (XDR * xdrs,
         char ** cpp,
-        u_int maxsize)
+        unsigned int maxsize)
 {
   char *sp = *cpp;              /* sp is the actual string pointer */
-  u_int size;
-  u_int nodesize;
+  unsigned int size;
+  unsigned int nodesize;
 
   /*
    * first deal with the length since xdr strings are counted-strings

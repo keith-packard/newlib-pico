@@ -56,16 +56,16 @@
 bool_t
 xdr_array (XDR * xdrs,
 	caddr_t * addrp,
-	u_int * sizep,
-	u_int maxsize,
-        u_int elsize,
+	unsigned int * sizep,
+	unsigned int maxsize,
+        unsigned int elsize,
 	xdrproc_t elproc)
 {
-  u_int i;
+  unsigned int i;
   caddr_t target = *addrp;
-  u_int c;                      /* the actual element count */
+  unsigned int c;                      /* the actual element count */
   bool_t stat = TRUE;
-  u_int nodesize;
+  unsigned int nodesize;
 
   /* like strings, arrays are really counted arrays */
   if (!xdr_u_int (xdrs, sizep))
@@ -139,11 +139,11 @@ xdr_array (XDR * xdrs,
 bool_t
 xdr_vector (XDR * xdrs,
 	char *basep,
-	u_int nelem,
-	u_int elemsize,
+	unsigned int nelem,
+	unsigned int elemsize,
         xdrproc_t xdr_elem)
 {
-  u_int i;
+  unsigned int i;
   char *elptr;
 
   elptr = basep;

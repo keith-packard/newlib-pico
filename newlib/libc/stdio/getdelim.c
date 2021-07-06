@@ -30,6 +30,7 @@ PORTABILITY
 No supporting OS subroutines are directly required.
 */
 
+#define _GNU_SOURCE
 #include <_ansi.h>
 #include <stdio.h>
 #include <stdlib.h>

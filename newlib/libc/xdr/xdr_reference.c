@@ -44,7 +44,7 @@
 
 #include "xdr_private.h"
 
-#define LASTUNSIGNED    ((u_int)0-1)
+#define LASTUNSIGNED    ((unsigned int)0-1)
 
 /*
  * XDR an indirect pointer
@@ -58,7 +58,7 @@
 bool_t
 xdr_reference (XDR * xdrs,
 	caddr_t * pp,
-	u_int size,
+	unsigned int size,
 	xdrproc_t proc)
 {
   caddr_t loc = *pp;
@@ -118,7 +118,7 @@ xdr_reference (XDR * xdrs,
 bool_t
 xdr_pointer (XDR * xdrs,
 	char **objpp,
-	u_int obj_size,
+	unsigned int obj_size,
 	xdrproc_t xdr_obj)
 {
   bool_t more_data;
