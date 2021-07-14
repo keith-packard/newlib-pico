@@ -141,7 +141,7 @@
 
 extern wint_t __fgetwc (struct _reent *, FILE *);
 extern wint_t __fputwc (struct _reent *, wchar_t, FILE *);
-extern u_char *__sccl (char *, u_char *fmt);
+extern unsigned char *__sccl (char *, unsigned char *fmt);
 extern int    __svfscanf_r (struct _reent *,FILE *, const char *,va_list);
 extern int    __ssvfscanf_r (struct _reent *,FILE *, const char *,va_list);
 extern int    __svfiscanf_r (struct _reent *,FILE *, const char *,va_list);

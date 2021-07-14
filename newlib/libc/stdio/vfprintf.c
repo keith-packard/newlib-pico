@@ -118,6 +118,7 @@ static char *rcsid = "$Id$";
  *
  * This code is large and complicated...
  */
+#define _GNU_SOURCE
 #include <newlib.h>
 
 #ifdef INTEGER_ONLY

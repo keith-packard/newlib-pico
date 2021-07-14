@@ -34,8 +34,6 @@
  */
 
 #define _GNU_SOURCE
-#define _XOPEN_SOURCE
-#define _XOPEN_SOURCE_EXTENDED
 #include <_ansi.h>
 #include <errno.h>
 #include <stdlib.h>

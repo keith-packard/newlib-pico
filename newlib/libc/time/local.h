@@ -1,5 +1,6 @@
 /* Copyright (c) 2002 Jeff Johnston <jjohnstn@redhat.com> */
 /* local header used by libc/time routines */
+#define _GNU_SOURCE
 #include <_ansi.h>
 #include <time.h>
 #include <sys/_tz_structs.h>

@@ -61,6 +61,7 @@ PORTABILITY
 <<freelocale>> is POSIX-1.2008.
 */
 
+#define _GNU_SOURCE
 #include <newlib.h>
 #include <stdlib.h>
 #include "setlocale.h"

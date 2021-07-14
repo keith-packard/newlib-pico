@@ -53,11 +53,11 @@
 static void xdrstdio_destroy (XDR *);
 static bool_t xdrstdio_getlong (XDR *, long *);
 static bool_t xdrstdio_putlong (XDR *, const long *);
-static bool_t xdrstdio_getbytes (XDR *, char *, u_int);
-static bool_t xdrstdio_putbytes (XDR *, const char *, u_int);
-static u_int xdrstdio_getpos (XDR *);
-static bool_t xdrstdio_setpos (XDR *, u_int);
-static int32_t * xdrstdio_inline (XDR *, u_int);
+static bool_t xdrstdio_getbytes (XDR *, char *, unsigned int);
+static bool_t xdrstdio_putbytes (XDR *, const char *, unsigned int);
+static unsigned int xdrstdio_getpos (XDR *);
+static bool_t xdrstdio_setpos (XDR *, unsigned int);
+static int32_t * xdrstdio_inline (XDR *, unsigned int);
 static bool_t xdrstdio_getint32 (XDR*, int32_t *);
 static bool_t xdrstdio_putint32 (XDR*, const int32_t *);
 
@@ -131,7 +131,7 @@ xdrstdio_putlong (XDR * xdrs,
 static bool_t
 xdrstdio_getbytes (XDR * xdrs,
         char *addr,
-	u_int len)
+	unsigned int len)
 {
   if ((len != 0) && (fread (addr, (size_t) len, 1,
                             (FILE *) xdrs->x_private) != 1))
@@ -142,7 +142,7 @@ xdrstdio_getbytes (XDR * xdrs,
 static bool_t
 xdrstdio_putbytes (XDR * xdrs,
         const char *addr,
-	u_int len)
+	unsigned int len)
 {
   if ((len != 0) && (fwrite (addr, (size_t) len, 1,
                              (FILE *) xdrs->x_private) != 1))
@@ -150,15 +150,15 @@ xdrstdio_putbytes (XDR * xdrs,
   return TRUE;
 }
 
-static u_int
+static unsigned int
 xdrstdio_getpos (XDR * xdrs)
 {
-  return ((u_int) ftell ((FILE *) xdrs->x_private));
+  return ((unsigned int) ftell ((FILE *) xdrs->x_private));
 }
 
 static bool_t
 xdrstdio_setpos (XDR * xdrs,
-        u_int pos)
+        unsigned int pos)
 {
   return ((fseek ((FILE *) xdrs->x_private, (long) pos, 0) < 0) ?
           FALSE : TRUE);
@@ -167,7 +167,7 @@ xdrstdio_setpos (XDR * xdrs,
 /* ARGSUSED */
 static int32_t *
 xdrstdio_inline (XDR * xdrs,
-	u_int len)
+	unsigned int len)
 {
   /*
    * Must do some work to implement this: must insure

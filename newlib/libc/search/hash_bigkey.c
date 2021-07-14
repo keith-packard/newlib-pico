@@ -405,7 +405,7 @@ __big_return(hashp, bufp, ndx, val, set_current)
 			/* The data is all on one page. */
 			tp = (char *)bp;
 			off = bp[bp[0]];
-			val->data = (u_char *)tp + off;
+			val->data = (unsigned char *)tp + off;
 			val->size = bp[1] - off;
 			if (set_current) {
 				if (bp[0] == 2) {	/* No more buckets in
@@ -438,7 +438,7 @@ __big_return(hashp, bufp, ndx, val, set_current)
 		return (-1);
 	}
 	memmove(hashp->tmp_buf, (save_p->page) + off, len);
-	val->data = (u_char *)hashp->tmp_buf;
+	val->data = (unsigned char *)hashp->tmp_buf;
 	return (0);
 }
 /*
@@ -511,7 +511,7 @@ __big_keydata(hashp, bufp, key, val, set)
 	key->size = collect_key(hashp, bufp, 0, val, set);
 	if (key->size == -1)
 		return (-1);
-	key->data = (u_char *)hashp->tmp_key;
+	key->data = (unsigned char *)hashp->tmp_key;
 	return (0);
 }
 

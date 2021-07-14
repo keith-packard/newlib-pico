@@ -92,6 +92,7 @@ SEEALSO
  *
  * This code is large and complicated...
  */
+#define _GNU_SOURCE
 #include <newlib.h>
 
 #ifdef INTEGER_ONLY

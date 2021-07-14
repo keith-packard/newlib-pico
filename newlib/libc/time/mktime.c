@@ -75,6 +75,7 @@ ANSI C requires <<mktime>>.
 <<mktime>> and <<timegm>> require no supporting OS subroutines.
 */
 
+#define _GNU_SOURCE
 #include <stdlib.h>
 #include <time.h>
 #include "local.h"

@@ -11,6 +11,7 @@
  * to anyone/anything when using this software.
  */
 
+#define _GNU_SOURCE
 #include "rand48.h"
 
 double

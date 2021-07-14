@@ -32,6 +32,7 @@
  * SUCH DAMAGE.
  */
 
+#define _GNU_SOURCE
 #include <sys/cdefs.h>
 #if 0
 #if defined(LIBC_SCCS) && !defined(lint)
@@ -41,6 +42,7 @@ __FBSDID("FreeBSD: src/lib/libc/stdlib/strtoimax.c,v 1.8 2002/09/06 11:23:59 tjr
 #endif
 __FBSDID("$FreeBSD: head/lib/libc/locale/wcstoimax.c 314436 2017-02-28 23:42:47Z imp $");
 
+#define _GNU_SOURCE
 #include <errno.h>
 #include <inttypes.h>
 #include <stdlib.h>

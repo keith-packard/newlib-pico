@@ -89,6 +89,7 @@ Supporting OS subroutines required: <<close>>,  <<fstat>>, <<getpid>>,
 The global pointer <<environ>> is also required.
 */
 
+#define _GNU_SOURCE
 #include <_ansi.h>
 #include <stdio.h>
 #include <stdlib.h>

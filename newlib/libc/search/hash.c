@@ -59,13 +59,13 @@ static int   alloc_segs(HTAB *, int);
 static int   flush_meta(HTAB *);
 static int   hash_access(HTAB *, ACTION, DBT *, DBT *);
 static int   hash_close(DB *);
-static int   hash_delete(const DB *, const DBT *, u_int);
+static int   hash_delete(const DB *, const DBT *, unsigned int);
 static int   hash_fd(const DB *);
-static int   hash_get(const DB *, const DBT *, DBT *, u_int);
-static int   hash_put(const DB *, DBT *, const DBT *, u_int);
+static int   hash_get(const DB *, const DBT *, DBT *, unsigned int);
+static int   hash_put(const DB *, DBT *, const DBT *, unsigned int);
 static void *hash_realloc(SEGMENT **, int, int);
-static int   hash_seq(const DB *, DBT *, DBT *, u_int);
-static int   hash_sync(const DB *, u_int);
+static int   hash_seq(const DB *, DBT *, DBT *, unsigned int);
+static int   hash_sync(const DB *, unsigned int);
 static int   hdestroy(HTAB *);
 static HTAB *init_hash(HTAB *, const char *, const HASHINFO *);
 static int   init_htab(HTAB *, int);
@@ -492,7 +492,7 @@ hdestroy(hashp)
 static int
 hash_sync(dbp, flags)
 	const DB *dbp;
-	u_int flags;
+	unsigned int flags;
 {
 	HTAB *hashp;
 
@@ -571,7 +571,7 @@ hash_get(dbp, key, data, flag)
 	const DB *dbp;
 	const DBT *key;
 	DBT *data;
-	u_int flag;
+	unsigned int flag;
 {
 	HTAB *hashp;
 
@@ -588,7 +588,7 @@ hash_put(dbp, key, data, flag)
 	const DB *dbp;
 	DBT *key;
 	const DBT *data;
-	u_int flag;
+	unsigned int flag;
 {
 	HTAB *hashp;
 
@@ -610,7 +610,7 @@ static int
 hash_delete(dbp, key, flag)
 	const DB *dbp;
 	const DBT *key;
-	u_int flag;		/* Ignored */
+	unsigned int flag;		/* Ignored */
 {
 	HTAB *hashp;
 
@@ -736,7 +736,7 @@ found:
 			if (__big_return(hashp, rbufp, ndx, val, 0))
 				return (ERROR);
 		} else {
-			val->data = (u_char *)rbufp->page + (int)bp[ndx + 1];
+			val->data = (unsigned char *)rbufp->page + (int)bp[ndx + 1];
 			val->size = bp[ndx] - bp[ndx + 1];
 		}
 		break;
@@ -762,7 +762,7 @@ static int
 hash_seq(dbp, key, data, flag)
 	const DB *dbp;
 	DBT *key, *data;
-	u_int flag;
+	unsigned int flag;
 {
 	__uint32_t bucket;
 	BUFHEAD *bufp;
@@ -826,9 +826,9 @@ hash_seq(dbp, key, data, flag)
 		if (__big_keydata(hashp, bufp, key, data, 1))
 			return (ERROR);
 	} else {
-		key->data = (u_char *)hashp->cpage->page + bp[ndx];
+		key->data = (unsigned char *)hashp->cpage->page + bp[ndx];
 		key->size = (ndx > 1 ? bp[ndx - 1] : hashp->BSIZE) - bp[ndx];
-		data->data = (u_char *)hashp->cpage->page + bp[ndx + 1];
+		data->data = (unsigned char *)hashp->cpage->page + bp[ndx + 1];
 		data->size = bp[ndx] - bp[ndx + 1];
 		ndx += 2;
 		if (ndx > bp[0]) {

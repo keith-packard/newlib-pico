@@ -59,6 +59,7 @@ on two different systems.
 
 #ifndef _REENT_ONLY
 
+#define _GNU_SOURCE
 #include <stdlib.h>
 
 int

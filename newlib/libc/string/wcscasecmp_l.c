@@ -39,6 +39,7 @@ QUICKREF
 	wcscasecmp_l 
 */
 
+#define _GNU_SOURCE
 #include <wchar.h>
 #include <wctype.h>
 
